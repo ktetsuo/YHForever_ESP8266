@@ -13,22 +13,25 @@ const char REMOCON_HTML[] PROGMEM = R"=====(
         <h1>YHRemocon</h1>
         <ul>
             <li>
-                <a href="javascript:void(0);" onclick="OnButton1();">Button1</a>
+                Button1
+                <ul>
+                    <li><a href="javascript:void(0);" onclick="OnButton(1,1);">Send</a></li>
+                    <li><a href="javascript:void(0);" onclick="OnButton(1,2);">Learn</a></li>
+                </ul>
             </li>
             <li>
-                <a href="javascript:void(0);" onclick="OnButton2();">Button2</a>
+                Button2
+                <ul>
+                    <li><a href="javascript:void(0);" onclick="OnButton(2,1);">Send</a></li>
+                    <li><a href="javascript:void(0);" onclick="OnButton(2,2);">Learn</a></li>
+                </ul>
             </li>
         </ul>
     </div>
     <script type="text/javascript">
-        function OnButton1() {
+        function OnButton(id, val) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "button?id=1&val=1");
-            xhr.send();
-        }
-        function OnButton2() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "button?id=2&val=1");
+            xhr.open("GET", `button?id=${id}&val=${val}`);
             xhr.send();
         }
     </script>
