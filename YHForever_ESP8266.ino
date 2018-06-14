@@ -13,6 +13,7 @@
 #include <Nefry.h>
 #include "FS.h"
 #include "remocon.h"
+#include "main.css.h"
 
 #include <IRremoteESP8266.h>
 #include <IRrecv.h>
@@ -43,9 +44,12 @@ void setup() {
   digitalWrite(POWER_LED, HIGH);
   // HTMLリンクの動作の設定
   Nefry.getWebServer()->on("/remocon.html",  [&]() {
-    Nefry.getWebServer()->send(200, "text/html", REMOCON_HTML);
+    Nefry.getWebServer()->send_P(200, "text/html", REMOCON_HTML);
   });
   Nefry.setIndexLink("Remocon", "/remocon.html"); // トップページへリンクを作成
+  Nefry.getWebServer()->on("/main.css",  [&]() {
+    Nefry.getWebServer()->send_P(200, "text/css", MAIN_CSS);
+  });
   Nefry.getWebServer()->on("/button",  [&]() {
     Nefry.getWebServer()->send(200, "text/html", onButton() ? "Success" : "Failed");
   });
