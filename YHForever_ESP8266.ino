@@ -109,13 +109,13 @@ boolean onSend(int id)
   int len = bytes / sizeof(*code);
   // 読み込めたら表示と赤外線送信
   if (0 < len) {
-    Serial.println("Send " + String(len) + "bytes:");
+    Serial.println("Send " + String(bytes) + "bytes:");
     for (int i = 0; i < len; i++) {
       Serial.print(code[i]);
       Serial.print(", ");
     }
     Serial.println("");
-    irsend.sendRaw(code, bytes / sizeof(uint16_t), 38);
+    irsend.sendRaw(code, len, 38);
   }
   return true;
 }
